@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path={`${process.env.PUBLIC_URL}/`} component={Home}></Route>
+        <Route exact path='/' component={Home}></Route>
         <Route path='/profile' component={Profile}></Route>
       </Switch>
     );
