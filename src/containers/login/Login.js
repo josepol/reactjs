@@ -30,14 +30,13 @@ class Login extends Component {
     }
 
     handleInputChange(event) {
-        console.log('changed', event.target.value);
         this.setState({
             name: event.target.value
         });
     }
 
     submitForm(event) {
-        console.log('submitted', 'new state: ' + this.state.name);
+        console.log(this.state.name);
         event.preventDefault();
     }
 
