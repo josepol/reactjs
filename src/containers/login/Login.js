@@ -8,6 +8,8 @@ class Login extends Component {
             name: this.props.name
         }
 
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.submitForm = this.submitForm.bind(this);
     }
 
     componentWillMount() {
@@ -19,8 +21,24 @@ class Login extends Component {
         return (
             <div>
                 <h1>Login</h1>
+                <form onSubmit={this.submitForm}>
+                    <input type="text" value={this.state.name} onChange={this.handleInputChange} />
+                    <input type="submit" value="Send" />
+                </form>
             </div>
         );
+    }
+
+    handleInputChange(event) {
+        console.log('changed', event.target.value);
+        this.setState({
+            name: event.target.value
+        });
+    }
+
+    submitForm(event) {
+        console.log('submitted', 'new state: ' + this.state.name);
+        event.preventDefault();
     }
 
     componentDidMount() {
