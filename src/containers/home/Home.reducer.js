@@ -4,7 +4,7 @@ const initialState = {
     pets: []
 };
 
-const homeReducer = (state = initialState, action) => {
+const homeReducer = (state = initialState, action = {}) => {
     switch(action.type) {
         case TYPE:
             return {

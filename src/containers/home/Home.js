@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { Menu } from '../../components/menu';
 import { Pets } from '../../components/pets';
-import Store from './../../store';
+import Store from './../../Store';
 import { addPet } from './Home.actions';
 import './Home.scss';
 
@@ -14,27 +13,27 @@ const mapStateToProps = () => {
 }
 
 class Home extends Component {
-    static get propTypes() {
-        return {
-            addPet: PropTypes.func
-        }
-    }
-
     constructor(props) {
         super(props);
         Store.subscribe(() => {
             console.log('subscribe', Store.getState());
         });
-        props.addPet({
+    }
+
+    addPet() {
+        this.props.addPet({
             id: '3',
             name: 'Nalita nala'
         });
     }
+
+
     render() {
         return (
             <div>
                 <Menu />
                 <h1>Home</h1>
+                <button onClick={() => this.addPet()}>Add </button>
                 <Pets/>
             </div>
         );
