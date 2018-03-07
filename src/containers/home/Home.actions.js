@@ -1,4 +1,4 @@
-import { TYPE } from './Actions.constants';
+import { TYPE } from './Home.constants';
 
 export const addPet = (pet) => {
     return {

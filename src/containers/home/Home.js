@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { Menu } from '../../components/menu';
 import { Pets } from '../../components/pets';
-import store from './../../Store';
-import { addPet } from '../../Actions';
+import Store from './../../store';
+import { addPet } from './Home.actions';
 import './Home.scss';
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
     return {
-        addPet: pet => store.dispatch(addPet(pet))
+        addPet: pet => Store.dispatch(addPet(pet))
     }
 }
 
 class Home extends Component {
+    static get propTypes() {
+        return {
+            addPet: PropTypes.func
+        }
+    }
+
     constructor(props) {
         super(props);
-        store.subscribe(() => {
-            console.log('subscribe', store.getState());
+        Store.subscribe(() => {
+            console.log('subscribe', Store.getState());
         });
-        this.props.addPet({
+        props.addPet({
             id: '3',
             name: 'Nalita nala'
         });
     }
-
     render() {
         return (
             <div>

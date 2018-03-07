@@ -5,7 +5,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: this.props.name
+            name: props.name
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
