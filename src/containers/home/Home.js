@@ -13,20 +13,14 @@ const mapStateToProps = () => {
 }
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-        Store.subscribe(() => {
-            console.log('subscribe', Store.getState());
-        });
-    }
 
     addPet() {
+        const id = parseInt(Math.random() * 1000 + 1, 10);
         this.props.addPet({
-            id: '3',
-            name: 'Nalita nala'
-        });
+            id,
+            name: 'Name ' + id
+        })
     }
-
 
     render() {
         return (
@@ -40,4 +34,4 @@ class Home extends Component {
     }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Home)

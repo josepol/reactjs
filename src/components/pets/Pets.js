@@ -1,34 +1,40 @@
 import React, { Component } from 'react';
+import Store from './../../Store';
+import { deletePet } from '../../containers/home/Home.actions';
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
-        pets: state.HomeReducer.pets
+        pets: state.HomeReducer.pets,
+        deletePet: pet => Store.dispatch(deletePet(pet))
     }
 }
 
 class Pets extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-            pets: []
+            currentPet: {}
         }
     }
 
     selectedChanged(event) {
-        console.log(event.target.value);
+        this.setState({
+            currentPet: event.target.value
+        });
     }
 
-    seePetsProps() {
-        console.log(this.props.pets);
+    deleteSelectedPet() {
+        this.props.deletePet(this.state.currentPet);
     }
 
     render() {
         return (
             <div>
                 <h1>Pets</h1>
-                <button onClick={() => this.seePetsProps()}>see pets in console</button>
-                <select onChange={() => this.selectedChanged()}>
+                <button onClick={() => this.deleteSelectedPet()}>Delete selected pet</button>
+                <select onChange={(e) => this.selectedChanged(e)}>
                     {this.props.pets.map(pet => 
                     <option key={pet.id} value={pet.id}>{pet.name}</option>
                     )}
@@ -38,4 +44,4 @@ class Pets extends Component {
     }
 }
 
-export default connect(mapStateToProps)(Pets);
+export default connect(mapStateToProps)(Pets)

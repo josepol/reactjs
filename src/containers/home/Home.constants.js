@@ -1,1 +1,2 @@
-export const TYPE = 'ADD';
+export const ADD_PET = 'ADD';
+export const DELETE_PET = 'DELETE';
