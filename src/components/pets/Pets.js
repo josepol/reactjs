@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+    return {
+        pets: state.HomeReducer.pets
+    }
+}
 
 class Pets extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pets: [
-                {
-                    id: '1',
-                    name: 'Mushasino'
-                },
-                {
-                    id: '2',
-                    name: 'Padme'
-                }
-            ]
+            pets: []
         }
     }
 
@@ -21,12 +19,17 @@ class Pets extends Component {
         console.log(event.target.value);
     }
 
+    seePetsProps() {
+        console.log(this.props.pets);
+    }
+
     render() {
         return (
             <div>
                 <h1>Pets</h1>
-                <select onChange={this.selectedChanged}>
-                    {this.state.pets.map(pet => 
+                <button onClick={() => this.seePetsProps()}>see pets in console</button>
+                <select onChange={() => this.selectedChanged()}>
+                    {this.props.pets.map(pet => 
                     <option key={pet.id} value={pet.id}>{pet.name}</option>
                     )}
                 </select>
@@ -35,4 +38,4 @@ class Pets extends Component {
     }
 }
 
-export default Pets;
+export default connect(mapStateToProps)(Pets);
